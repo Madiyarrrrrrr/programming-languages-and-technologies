@@ -1,0 +1,79 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f1f3f6;
+}
+
+.container {
+    width: 420px;
+    margin: 40px auto;
+    padding: 25px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 12px rgba(0,0,0,0.15);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+}
+
+input.valid {
+    border: 2px solid green;
+}
+
+input.invalid {
+    border: 2px solid red;
+}
+
+small {
+    display: block;
+    margin-top: 4px;
+}
+
+.strength {
+    height: 8px;
+    margin-top: 8px;
+    background: #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+#strengthBar {
+    height: 100%;
+    width: 0;
+    transition: 0.3s;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 20px;
+    background: #1976d2;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #125ca1;
+}
+
+#message {
+    text-align: center;
+    font-weight: bold;
+}

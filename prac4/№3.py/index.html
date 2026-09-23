@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Заказ билета</title>
+    <link rel="stylesheet" href="C:\Users\Student\.anaconda\programming-languages-and-technologies\prac4\style.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Заказ билета</h1>
+
+    <form id="ticketForm">
+
+        <label for="name">Имя:</label>
+        <input type="text" id="name" placeholder="Введите имя">
+
+        <label for="city">Город назначения:</label>
+        <select id="city">
+            <option value="">-- Выберите город --</option>
+            <option value="Алматы">Алматы</option>
+            <option value="Астана">Астана</option>
+            <option value="Шымкент">Шымкент</option>
+            <option value="Караганда">Караганда</option>
+        </select>
+
+        <label>Тип билета:</label>
+        <div class="radio-group">
+            <label>
+                <input type="radio" name="ticketType" value="Эконом">
+                Эконом
+            </label>
+
+            <label>
+                <input type="radio" name="ticketType" value="Бизнес">
+                Бизнес
+            </label>
+        </div>
+
+        <label class="checkbox">
+            <input type="checkbox" id="agree">
+            Я согласен с условиями заказа
+        </label>
+
+        <button type="submit">Заказать билет</button>
+
+        <p id="message"></p>
+    </form>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог товаров</title>
+    <link rel="stylesheet" href="C:\Users\Student\.anaconda\programming-languages-and-technologies\prac5\№17.py">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            margin: 0;
+        }
+
+        header {
+            background: #1769aa;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            padding: 25px;
+        }
+
+        .filter {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+        }
+
+        .filter input {
+            padding: 10px;
+            width: 250px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background: #1769aa;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background: #0d4775;
+        }
+
+        #catalog {
+            display: grid;
+            grid-template-columns: repeat(
+                auto-fit,
+                minmax(220px, 1fr)
+            );
+            gap: 20px;
+        }
+
+        .product {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px #0002;
+        }
+
+        .product h3 {
+            color: #1769aa;
+        }
+
+        .price {
+            font-size: 20px;
+            font-weight: bold;
+            color: #222;
+        }
+
+        .category {
+            color: #777;
+        }
+
+        #message {
+            margin: 20px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Каталог товаров</h1>
+    <p>Фильтрация товаров по максимальной цене</p>
+</header>
+
+<div class="container">
+
+    <div class="filter">
+
+        <h2>Фильтр</h2>
+
+        <input
+            type="number"
+            id="maxPrice"
+            placeholder="Максимальная цена"
+        >
+
+        <button id="filterButton">
+            Применить
+        </button>
+
+        <button id="showAll">
+            Показать все
+        </button>
+
+    </div>
+
+    <div id="message"></div>
+
+    <div id="catalog"></div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

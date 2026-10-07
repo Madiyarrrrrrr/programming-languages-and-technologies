@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Поймай объект</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>🎯 Поймай объект</h1>
+        <p class="description">
+            Поймай движущийся объект как можно быстрее!
+        </p>
+
+        <div class="difficulty">
+            <h3>Выберите сложность:</h3>
+
+            <button class="difficulty-btn active" data-level="easy">
+                Легко
+            </button>
+
+            <button class="difficulty-btn" data-level="medium">
+                Средне
+            </button>
+
+            <button class="difficulty-btn" data-level="hard">
+                Сложно
+            </button>
+        </div>
+
+        <div class="info">
+            <div>
+                Попадания:
+                <span id="score">0</span>
+                /
+                <span id="target">10</span>
+            </div>
+
+            <div>
+                Время:
+                <span id="time">0</span> сек.
+            </div>
+        </div>
+
+        <div id="gameArea">
+            <div id="targetObject"></div>
+        </div>
+
+        <p id="message">
+            Нажми «Начать игру» и поймай объект!
+        </p>
+
+        <button id="startButton">Начать игру</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

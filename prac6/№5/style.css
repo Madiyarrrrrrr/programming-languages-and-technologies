@@ -1,0 +1,51 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    color: #222;
+    transition: 0.3s;
+}
+
+.container {
+    width: 500px;
+    max-width: 90%;
+    margin: 100px auto;
+    padding: 40px;
+    text-align: center;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    background-color: #333;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+/* Тёмная тема */
+.dark-theme {
+    background-color: #181818;
+    color: #f5f5f5;
+}
+
+.dark-theme .container {
+    background-color: #292929;
+}
+
+.dark-theme button {
+    background-color: #f5f5f5;
+    color: #222;
+}

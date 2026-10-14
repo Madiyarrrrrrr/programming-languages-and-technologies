@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SPA-приложение спортивного клуба">
+    <title>SportLife — Спортивный клуб</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="app.js" defer></script>
+</head>
+<body>
+    <header class="header">
+        <div class="container header-content">
+            <a href="#" class="logo" aria-label="SportLife — главная">
+                <span class="logo-icon">S</span>
+                SportLife
+            </a>
+            <span class="header-label">Твой путь к лучшей форме</span>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <p class="eyebrow">СПОРТИВНЫЙ КЛУБ</p>
+            <h1>Стань сильнее каждый день</h1>
+            <p class="hero-description">
+                Выбирай тренировку, знакомься с тренерами
+                и подбирай абонемент для достижения своих целей.
+            </p>
+        </section>
+
+        <nav class="tabs" aria-label="Разделы спортивного клуба">
+            <button class="tab active"
+                    type="button"
+                    data-page="workouts"
+                    aria-selected="true">
+                Тренировки
+            </button>
+            <button class="tab"
+                    type="button"
+                    data-page="trainers"
+                    aria-selected="false">
+                Тренеры
+            </button>
+            <button class="tab"
+                    type="button"
+                    data-page="memberships"
+                    aria-selected="false">
+                Абонементы
+            </button>
+        </nav>
+
+        <section class="content-area"
+                 id="content"
+                 aria-live="polite"
+                 aria-busy="false">
+            <!-- Содержимое вкладок создаётся в app.js -->
+        </section>
+
+        <p class="notice" id="notice" role="status" aria-live="polite"></p>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 SportLife. Учебный проект по технологии программирования.</p>
+        </div>
+    </footer>
+</body>
+</html>

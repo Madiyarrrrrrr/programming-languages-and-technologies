@@ -1,0 +1,505 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPA — Магазин</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f3f5f9;
+            color: #263247;
+        }
+
+        header {
+            background: #263b80;
+            color: white;
+            padding: 25px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0 0 8px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            padding: 15px;
+            background: white;
+            box-shadow: 0 2px 8px #0001;
+        }
+
+        nav button {
+            border: none;
+            background: #e9edfa;
+            color: #263b80;
+            padding: 12px 22px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        nav button.active {
+            background: #263b80;
+            color: white;
+        }
+
+        main {
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 0 20px;
+            min-height: 400px;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 22px;
+            border-radius: 14px;
+            box-shadow: 0 4px 14px #0000000d;
+            text-align: center;
+        }
+
+        .product-icon {
+            font-size: 65px;
+            margin: 10px 0;
+        }
+
+        .price {
+            font-size: 21px;
+            font-weight: bold;
+            color: #263b80;
+        }
+
+        .primary, .secondary, .danger {
+            border: none;
+            padding: 10px 16px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-top: 8px;
+        }
+
+        .primary {
+            background: #263b80;
+            color: white;
+        }
+
+        .secondary {
+            background: #e9edfa;
+            color: #263b80;
+        }
+
+        .danger {
+            background: #ffe7e7;
+            color: #b42323;
+        }
+
+        button:hover {
+            opacity: 0.85;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            flex-wrap: wrap;
+            background: white;
+            padding: 18px;
+            margin-bottom: 12px;
+            border-radius: 10px;
+        }
+
+        .quantity {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .quantity button {
+            width: 32px;
+            height: 32px;
+            border: none;
+            border-radius: 6px;
+            background: #e9edfa;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .summary {
+            background: white;
+            padding: 22px;
+            border-radius: 12px;
+            margin-top: 20px;
+            text-align: right;
+        }
+
+        .empty {
+            text-align: center;
+            padding: 50px 10px;
+            background: white;
+            border-radius: 12px;
+        }
+
+        .about {
+            background: white;
+            padding: 30px;
+            border-radius: 14px;
+            line-height: 1.8;
+        }
+
+        footer {
+            text-align: center;
+            padding: 22px;
+            color: #68738a;
+        }
+
+        @media (max-width: 500px) {
+            nav button {
+                flex: 1;
+                padding: 12px 8px;
+            }
+
+            .cart-item {
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>🛍️ Магазин</h1>
+        <p>Всё необходимое в одном месте</p>
+    </header>
+
+    <nav>
+        <button class="active" data-tab="products">
+            Товары
+        </button>
+
+        <button data-tab="cart">
+            Корзина (<span id="cart-count">0</span>)
+        </button>
+
+        <button data-tab="about">
+            О магазине
+        </button>
+    </nav>
+
+    <main>
+        <section id="products-tab">
+            <h2>Наши товары</h2>
+            <div class="products" id="products-list"></div>
+        </section>
+
+        
+<section id="cart-tab" hidden>
+    <h2>Корзина</h2>
+    <div id="cart-list"></div>
+    <div id="cart-summary"></div>
+
+    <div id="checkout" class="about" hidden>
+        <h2>Оформление заказа</h2>
+
+        <form id="payment-form">
+            <p>
+                <label for="customer-name">Ваше имя:</label><br>
+                <input id="customer-name" type="text"
+                    placeholder="Введите имя" required>
+            </p>
+
+            <p>
+                <label for="customer-email">Электронная почта:</label><br>
+                <input id="customer-email" type="email"
+                    placeholder="example@mail.com" required>
+            </p>
+
+            <p>
+                <label for="payment-method">Способ оплаты:</label><br>
+                <select id="payment-method" required>
+                    <option value="card">Банковская карта</option>
+                    <option value="kaspi">Kaspi Pay (демо)</option>
+                    <option value="cash">Наличными при получении</option>
+                </select>
+            </p>
+
+            <h3 id="payment-total">К оплате: 0 ₸</h3>
+
+            <button type="submit" class="primary">
+                Оплатить
+            </button>
+
+            <button type="button" class="secondary"
+                onclick="closeCheckout()">
+                Назад в корзину
+            </button>
+        </form>
+
+        <p id="payment-message" aria-live="polite"></p>
+    </div>
+</section>
+
+
+        <section id="about-tab" hidden>
+            <div class="about">
+                <h2>О нашем магазине</h2>
+                <p>
+                    Добро пожаловать в наш интернет-магазин!
+                    Здесь вы найдёте полезные товары по доступным ценам.
+                </p>
+                <p>
+                    <strong>Наши преимущества:</strong>
+                </p>
+                <ul>
+                    <li>Удобный интерфейс</li>
+                    <li>Простой выбор товаров</li>
+                    <li>Автоматический пересчёт корзины</li>
+                    <li>Быстрое добавление и удаление товаров</li>
+                </ul>
+                <p>
+                    Контакты: shop@example.com
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        © 2026 Магазин. Учебный проект SPA.
+    </footer>
+
+    <script>
+        // Список товаров
+        const products = [
+    { id: 1, name: "Наушники", price: 12000, icon: "🎧" },
+    { id: 2, name: "Смарт-часы", price: 18000, icon: "⌚" },
+    { id: 3, name: "Клавиатура", price: 9500, icon: "⌨️" },
+    { id: 4, name: "Колонка", price: 15000, icon: "🔊" },
+    { id: 5, name: "Смартфон", price: 120000, icon: "📱" },
+    { id: 6, name: "Ноутбук", price: 350000, icon: "💻" },
+    { id: 7, name: "Планшет", price: 95000, icon: "📲" },
+    { id: 8, name: "Мышь", price: 5500, icon: "🖱️" },
+    { id: 9, name: "Монитор", price: 85000, icon: "🖥️" },
+    { id: 10, name: "Фотоаппарат", price: 175000, icon: "📷" },
+    { id: 11, name: "Принтер", price: 65000, icon: "🖨️" },
+    { id: 12, name: "Микрофон", price: 22000, icon: "🎙️" },
+    { id: 13, name: "Игровой геймпад", price: 18000, icon: "🎮" },
+    { id: 14, name: "Телевизор", price: 210000, icon: "📺" },
+    { id: 15, name: "Роутер", price: 14000, icon: "📡" },
+    { id: 16, name: "Флешка", price: 3500, icon: "💾" },
+    { id: 17, name: "Внешний диск", price: 28000, icon: "💽" },
+    { id: 18, name: "Веб-камера", price: 12500, icon: "📹" },
+    { id: 19, name: "Зарядное устройство", price: 4500, icon: "🔌" },
+    { id: 20, name: "Пауэрбанк", price: 10000, icon: "🔋" }
+];
+
+        // Корзина хранит ID товара и количество
+        const cart = {};
+
+        const money = value =>
+            value.toLocaleString("ru-RU") + " ₸";
+
+        // Переключение вкладок без перезагрузки страницы
+        document.querySelectorAll("nav button").forEach(button => {
+            button.addEventListener("click", () => {
+                document.querySelectorAll("nav button")
+                    .forEach(btn => btn.classList.remove("active"));
+
+                button.classList.add("active");
+
+                document.querySelectorAll("main section")
+                    .forEach(section => section.hidden = true);
+
+                document.getElementById(
+                    button.dataset.tab + "-tab"
+                ).hidden = false;
+
+                if (button.dataset.tab === "cart") {
+                    renderCart();
+                }
+            });
+        });
+
+        // Отображение каталога товаров
+        function renderProducts() {
+            const container = document.getElementById("products-list");
+
+            container.innerHTML = products.map(product => `
+                <article class="card">
+                    <div class="product-icon">${product.icon}</div>
+                    <h3>${product.name}</h3>
+                    <p class="price">${money(product.price)}</p>
+                    <button class="primary"
+                        onclick="addToCart(${product.id})">
+                        Добавить в корзину
+                    </button>
+                </article>
+            `).join("");
+        }
+
+        // Добавление товара в корзину
+        function addToCart(id) {
+            cart[id] = (cart[id] || 0) + 1;
+            updateCartCount();
+        }
+
+        // Изменение количества товара
+        function changeQuantity(id, delta) {
+            if (!cart[id]) return;
+
+            cart[id] += delta;
+
+            if (cart[id] <= 0) {
+                delete cart[id];
+            }
+
+            updateCartCount();
+            renderCart();
+        }
+
+        // Полное удаление товара
+        function removeFromCart(id) {
+            delete cart[id];
+            updateCartCount();
+            renderCart();
+        }
+
+        // Подсчёт общего количества всех единиц товара
+        function updateCartCount() {
+            const count = Object.values(cart)
+                .reduce((sum, quantity) => sum + quantity, 0);
+
+            document.getElementById("cart-count").textContent = count;
+        }
+
+        // Отображение содержимого корзины и стоимости
+        function renderCart() {
+            const container = document.getElementById("cart-list");
+            const summary = document.getElementById("cart-summary");
+
+            const items = products.filter(product => cart[product.id]);
+
+            if (items.length === 0) {
+                container.innerHTML = `
+                    <div class="empty">
+                        <h3>🛒 Корзина пуста</h3>
+                        <p>Добавьте товары из каталога.</p>
+                    </div>
+                `;
+
+                summary.innerHTML = "";
+                return;
+            }
+
+            container.innerHTML = items.map(product => `
+                <div class="cart-item">
+                    <div>
+                        <strong>${product.icon} ${product.name}</strong>
+                        <p>${money(product.price)} за шт.</p>
+                    </div>
+
+                    <div class="quantity">
+                        <button onclick="changeQuantity(${product.id}, -1)"
+                            aria-label="Уменьшить количество">−</button>
+
+                        <strong>${cart[product.id]}</strong>
+
+                        <button onclick="changeQuantity(${product.id}, 1)"
+                            aria-label="Увеличить количество">+</button>
+                    </div>
+
+                    <div>
+                        <strong>${money(
+                            product.price * cart[product.id]
+                        )}</strong>
+                        <br>
+                        <button class="danger"
+                            onclick="removeFromCart(${product.id})">
+                            Удалить
+                        </button>
+                    </div>
+                </div>
+            `).join("");
+
+            const totalQuantity = Object.values(cart)
+                .reduce((sum, quantity) => sum + quantity, 0);
+
+            const totalPrice = items.reduce(
+                (sum, product) =>
+                    sum + product.price * cart[product.id],
+                0
+            );
+
+            summary.innerHTML = `
+                 <div class="summary">
+                    <p>Количество товаров: <strong>${totalQuantity}</strong></p>
+                    <h2>Итого: ${money(totalPrice)}</h2>
+                    <button class="secondary" onclick="clearCart()">
+                        Очистить корзину
+                    </button>
+                </div>
+            `;
+        }
+        
+
+        // Очистка корзины
+        function clearCart() {
+            Object.keys(cart).forEach(id => delete cart[id]);
+            updateCartCount();
+            renderCart();
+        }
+
+        // Начальная загрузка
+        renderProducts();
+        updateCartCount();
+        function openCheckout() {
+    if (Object.keys(cart).length === 0) {
+        alert("Корзина пуста!");
+        return;
+    }
+
+    const total = products.reduce((sum, p) => {
+        return sum + p.price * (cart[p.id] || 0);
+    }, 0);
+
+    const name = prompt("Введите ваше имя:");
+    if (!name || !name.trim()) return;
+
+    const email = prompt("Введите вашу электронную почту:");
+    if (!email || !email.trim()) return;
+
+    const confirmPayment = confirm(
+        "Покупатель: " + name +
+        "\nEmail: " + email +
+        "\nСумма к оплате: " + total.toLocaleString("ru-RU") +
+        " ₸\n\nПодтвердить тестовую оплату?"
+    );
+
+    if (!confirmPayment) return;
+
+    Object.keys(cart).forEach(id => delete cart[id]);
+
+    updateCartCount();
+    renderCart();
+
+    alert("✅ Заказ успешно оформлен! Это демонстрационная оплата.");
+}
+    </script>
+</body>
+</html>

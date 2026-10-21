@@ -1,0 +1,156 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Система бронирования переговорных комнат офиса">
+  <title>Roomly — Бронирование переговорных</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <aside class="sidebar">
+    <a href="#" class="brand"><span class="brand-icon">R</span> Roomly</a>
+
+    <p class="menu-label">РАБОЧЕЕ ПРОСТРАНСТВО</p>
+    <a href="#dashboard" class="nav-link active">▦ Обзор</a>
+    <a href="#rooms" class="nav-link">▣ Переговорные</a>
+    <a href="#bookings" class="nav-link">▤ Бронирования</a>
+
+    <div class="sidebar-bottom">
+      <div class="profile-avatar">М</div>
+      <div>
+        <strong>Мадияр</strong>
+        <span>Сотрудник офиса</span>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main-content" id="dashboard">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">УПРАВЛЕНИЕ ОФИСОМ</p>
+        <h1>Переговорные комнаты</h1>
+        <p class="subtitle">Планируйте встречи и управляйте бронированиями.</p>
+      </div>
+      <button class="primary-button" id="openBooking">+ Забронировать</button>
+    </header>
+
+    <section class="stats-grid">
+      <article class="stat-card">
+        <span class="stat-icon purple">▣</span>
+        <p>Всего комнат</p>
+        <h2 id="totalRooms">3</h2>
+        <span class="stat-note">Доступно для бронирования</span>
+      </article>
+      <article class="stat-card">
+        <span class="stat-icon green">✓</span>
+        <p>Свободно сейчас</p>
+        <h2 id="freeRooms">3</h2>
+        <span class="stat-note">На текущий момент</span>
+      </article>
+      <article class="stat-card">
+        <span class="stat-icon orange">◷</span>
+        <p>Всего бронирований</p>
+        <h2 id="totalBookings">0</h2>
+        <span class="stat-note">Сохранённые записи</span>
+      </article>
+    </section>
+
+    <section class="section" id="rooms">
+      <div class="section-heading">
+        <div>
+          <h2>Наши переговорные</h2>
+          <p>Выберите подходящее помещение для встречи.</p>
+        </div>
+      </div>
+      <div class="rooms-grid" id="roomsGrid"></div>
+    </section>
+
+    <section class="section booking-section" id="bookingFormSection">
+      <div class="section-heading">
+        <div>
+          <h2>Новое бронирование</h2>
+          <p>Заполните данные встречи и выберите время.</p>
+        </div>
+      </div>
+
+      <form id="bookingForm" class="booking-form">
+        <div class="form-field">
+          <label for="employee">Имя сотрудника</label>
+          <input id="employee" name="employee" type="text"
+                 placeholder="Например, Мадияр" maxlength="60" required>
+        </div>
+
+        <div class="form-field">
+          <label for="room">Переговорная</label>
+          <select id="room" name="room" required>
+            <option value="1">Переговорная A</option>
+            <option value="2">Переговорная B</option>
+            <option value="3">Конференц-зал</option>
+          </select>
+        </div>
+
+        <div class="form-field">
+          <label for="date">Дата</label>
+          <input id="date" name="date" type="date" required>
+        </div>
+
+        <div class="form-field">
+          <label for="startTime">Начало</label>
+          <input id="startTime" name="startTime" type="time"
+                 value="10:00" required>
+        </div>
+
+        <div class="form-field">
+          <label for="endTime">Окончание</label>
+          <input id="endTime" name="endTime" type="time"
+                 value="11:00" required>
+        </div>
+
+        <div class="form-actions">
+          <button class="primary-button" type="submit">Создать бронь</button>
+          <button class="secondary-button" type="reset">Очистить</button>
+        </div>
+      </form>
+      <div id="message" class="message" role="status" aria-live="polite"></div>
+    </section>
+
+    <section class="section" id="bookings">
+      <div class="section-heading">
+        <div>
+          <h2>Расписание бронирований</h2>
+          <p>Все запланированные встречи.</p>
+        </div>
+        <span class="count-badge" id="bookingCount">0 записей</span>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Сотрудник</th>
+              <th>Переговорная</th>
+              <th>Дата</th>
+              <th>Время</th>
+              <th>Статус</th>
+              <th>Действие</th>
+            </tr>
+          </thead>
+          <tbody id="bookingTable">
+            <tr>
+              <td colspan="6" class="empty-state">Бронирований пока нет.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <footer>
+      <span>Roomly © 2026</span>
+      <span>Система бронирования переговорных · Версия 1.0</span>
+    </footer>
+  </main>
+</body>
+</html>

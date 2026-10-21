@@ -1,0 +1,118 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Бронирование учебных комнат</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>RoomBook</h1>
+      <p>Система бронирования учебных комнат</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="panel">
+      <h2>Новое бронирование</h2>
+
+      <form id="bookingForm">
+        <div class="form-grid">
+          <label>
+            Дата
+            <input type="date" id="date" required>
+          </label>
+
+          <label>
+            Учебная комната
+            <select id="room" required>
+              <option value="Аудитория 101">Аудитория 101</option>
+              <option value="Аудитория 102">Аудитория 102</option>
+              <option value="Аудитория 103">Аудитория 103</option>
+              <option value="Переговорная 201">Переговорная 201</option>
+            </select>
+          </label>
+
+          <label>
+            Время начала
+            <select id="startTime" required>
+              <option>09:00</option>
+              <option>10:00</option>
+              <option>11:00</option>
+              <option>12:00</option>
+              <option>13:00</option>
+              <option>14:00</option>
+              <option>15:00</option>
+              <option>16:00</option>
+              <option>17:00</option>
+            </select>
+          </label>
+
+          <label>
+            Время окончания
+            <select id="endTime" required>
+              <option>10:00</option>
+              <option>11:00</option>
+              <option>12:00</option>
+              <option>13:00</option>
+              <option>14:00</option>
+              <option>15:00</option>
+              <option>16:00</option>
+              <option>17:00</option>
+              <option>18:00</option>
+            </select>
+          </label>
+        </div>
+
+        <label>
+          Имя бронирующего
+          <input
+            type="text"
+            id="person"
+            placeholder="Введите имя"
+            maxlength="60"
+            required
+          >
+        </label>
+
+        <button type="submit" class="primary">
+          Забронировать
+        </button>
+      </form>
+
+      <p id="message" aria-live="polite"></p>
+    </section>
+
+    <section class="panel">
+      <div class="heading">
+        <h2>Список бронирований</h2>
+        <span id="count">0 записей</span>
+      </div>
+
+      <div id="bookingList"></div>
+
+      <button type="button" id="exportBtn" class="secondary">
+        Экспорт в JSON
+      </button>
+
+      <button type="button" id="clearBtn" class="danger">
+        Очистить список
+      </button>
+    </section>
+
+    <section class="panel">
+      <h2>Используемые технологии</h2>
+      <p>HTML — структура страницы.</p>
+      <p>CSS — оформление интерфейса.</p>
+      <p>JavaScript — создание, проверка и удаление бронирований.</p>
+      <p>JSON и localStorage — сохранение и восстановление данных.</p>
+    </section>
+  </main>
+
+  <footer>Лабораторная работа №8 · Вариант 18</footer>
+</body>
+</html>

@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пользователи, публикации и комментарии</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="app.js" defer></script>
+</head>
+<body>
+    <main class="container">
+        <h1>Пользователи и комментарии</h1>
+
+        <label for="userSelect">Выберите пользователя:</label>
+        <select id="userSelect">
+            <option value="">Загрузите пользователей</option>
+        </select>
+
+        <p id="status" role="status"></p>
+
+        <h2>Публикации</h2>
+        <div id="posts" class="posts"></div>
+
+        <h2>Комментарии</h2>
+        <div id="comments" class="comments">
+            Выберите публикацию.
+        </div>
+    </main>
+</body>
+</html>

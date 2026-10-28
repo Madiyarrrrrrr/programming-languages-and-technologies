@@ -1,0 +1,71 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f3f4f6;
+    margin: 0;
+    padding: 30px 16px;
+    color: #222;
+}
+
+.container {
+    max-width: 1000px;
+    margin: auto;
+}
+
+h1 {
+    text-align: center;
+}
+
+button {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 7px;
+    background: #2563eb;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1d4ed8;
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+#loadBtn {
+    display: block;
+    margin: 20px auto;
+}
+
+#status {
+    text-align: center;
+}
+
+.users {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 18px;
+}
+
+.card {
+    background: white;
+    border-radius: 10px;
+    padding: 18px;
+    box-shadow: 0 2px 8px #0001;
+    overflow-wrap: anywhere;
+}
+
+.posts {
+    margin-top: 15px;
+    padding-left: 20px;
+}
+
+.posts li {
+    margin-bottom: 10px;
+}
+
+.post-title {
+    font-weight: bold;
+}

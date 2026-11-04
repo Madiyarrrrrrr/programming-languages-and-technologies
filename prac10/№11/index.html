@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог книг</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>Каталог книг</h1>
+
+    <input id="search" type="text" placeholder="Поиск книги или автора">
+
+    <select id="sort">
+        <option value="title">По названию</option>
+        <option value="author">По автору</option>
+        <option value="year">По году выпуска</option>
+    </select>
+
+    <p id="count"></p>
+    <div id="bookList"></div>
+
+    <script type="module" src="src/main.js"></script>
+</body>
+</html>

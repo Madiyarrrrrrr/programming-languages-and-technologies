@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Система заказов столовой</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>Система заказов столовой</h1>
+
+    <div class="container">
+
+        <section>
+            <h2>Меню столовой</h2>
+            <div id="menuList"></div>
+        </section>
+
+        <section>
+            <h2>Ваш заказ</h2>
+            <div id="orderList"></div>
+
+            <h3>Итого: <span id="total">0</span> ₸</h3>
+
+            <button id="placeOrder">Оформить заказ</button>
+            <button id="clearOrder">Очистить заказ</button>
+
+            <p id="status"></p>
+        </section>
+
+    </div>
+
+    <script type="module" src="src/main.js"></script>
+</body>
+</html>

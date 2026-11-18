@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ролевой доступ — Вариант 8</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="wrapper">
+        <!-- Форма авторизации -->
+        <div id="authCard" class="card">
+            <h1>Учебный портал (RBAC)</h1>
+            <p class="hint">
+                Студент: <code>student</code> / <code>1234</code><br>
+                Преподаватель: <code>teacher</code> / <code>1234</code>
+            </p>
+            <form id="loginForm">
+                <input type="text" id="login" placeholder="Логин" required>
+                <input type="password" id="password" placeholder="Пароль" required>
+                <div id="authError" class="banner error hidden"></div>
+                <button type="submit" class="btn primary">Войти</button>
+            </form>
+        </div>
+
+        <!-- Рабочая область -->
+        <div id="appCard" class="card wide hidden">
+            <header class="topbar">
+                <div>
+                    <h2 id="userName">Пользователь</h2>
+                    <span id="userRoleBadge" class="role-badge">role</span>
+                </div>
+                <button id="logoutBtn" class="btn outline">Выйти</button>
+            </header>
+
+            <nav class="tabs">
+                <button class="tab-btn" data-endpoint="/api/student-data">Раздел студента</button>
+                <button class="tab-btn" data-endpoint="/api/teacher-data">Раздел преподавателя</button>
+            </nav>
+
+            <div id="accessBanner" class="banner hidden"></div>
+
+            <div id="contentArea" class="content-box">
+                <h3 id="sectionTitle">Выберите раздел</h3>
+                <ul id="sectionList"></ul>
+            </div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

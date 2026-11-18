@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кабинет студента — Вариант 1</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Блок входа -->
+        <div id="loginView" class="card">
+            <h1>Вход в кабинет студента</h1>
+            <p class="subtitle">Тестовые данные: <b>student01</b> / <b>pass123</b></p>
+            
+            <form id="loginForm" novalidate>
+                <div class="field">
+                    <label for="login">Логин студента</label>
+                    <input type="text" id="login" placeholder="Введите логин">
+                </div>
+                <div class="field">
+                    <label for="password">Пароль</label>
+                    <input type="password" id="password" placeholder="Введите пароль">
+                </div>
+                <div id="errorMsg" class="alert error hidden"></div>
+                <button type="submit" class="btn primary">Войти в систему</button>
+            </form>
+            <button id="testDirectBtn" class="btn ghost">Проверить запрос профиля без входа (401)</button>
+        </div>
+
+        <!-- Защищенный личный кабинет -->
+        <div id="profileView" class="card hidden">
+            <div class="header-row">
+                <div>
+                    <span class="badge">Студент</span>
+                    <h1 id="studentName">Имя студента</h1>
+                </div>
+                <button id="logoutBtn" class="btn danger">Выйти</button>
+            </div>
+            
+            <div class="info-grid">
+                <div class="info-box">
+                    <span>Академическая группа</span>
+                    <strong id="studentGroup">—</strong>
+                </div>
+                <div class="info-box">
+                    <span>Специальность</span>
+                    <strong id="studentSpec">—</strong>
+                </div>
+                <div class="info-box">
+                    <span>Текущий GPA</span>
+                    <strong id="studentGpa">—</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

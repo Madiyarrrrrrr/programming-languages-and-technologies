@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IAM & Audit System — Вариант 16</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Экран входа -->
+    <div id="loginScreen" class="auth-container">
+        <div class="auth-card">
+            <div class="logo-badge">IAM SECURITY</div>
+            <h1>Управление доступом</h1>
+            <p class="desc">
+                Администратор: <b>admin</b> / <b>admin123</b><br>
+                Наблюдатель: <b>operator</b> / <b>user123</b>
+            </p>
+            <form id="loginForm">
+                <label>Логин</label>
+                <input type="text" id="loginInput" placeholder="admin" required>
+                <label>Пароль</label>
+                <input type="password" id="passwordInput" placeholder="••••••••" required>
+                <div id="loginAlert" class="msg error hidden"></div>
+                <button type="submit" class="btn primary full">Авторизоваться</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Панель управления -->
+    <div id="dashboardScreen" class="dashboard hidden">
+        <header class="navbar">
+            <div class="nav-left">
+                <span class="brand">IAM Console</span>
+                <span id="currentUserBadge" class="user-pill"></span>
+            </div>
+            <div class="nav-right">
+                <span id="sessionTimer" class="timer-pill">Сессия: 10:00</span>
+                <button id="logoutBtn" class="btn danger">Выйти</button>
+            </div>
+        </header>
+
+        <main class="main-grid">
+            <div id="globalAlert" class="msg hidden"></div>
+
+            <!-- Таблица пользователей -->
+            <section class="panel">
+                <div class="panel-header">
+                    <h2>Пользователи системы</h2>
+                    <button id="refreshBtn" class="btn small">Обновить</button>
+                </div>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Логин</th>
+                                <th>ФИО</th>
+                                <th>Роль</th>
+                                <th>Статус</th>
+                                <th>Действия (API)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="usersTableBody"></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Журнал событий (Audit Log) -->
+            <section class="panel">
+                <div class="panel-header">
+                    <h2>Журнал событий безопасности (Audit Log)</h2>
+                    <button id="loadAuditBtn" class="btn small">Запросить журнал</button>
+                </div>
+                <div id="auditNotice" class="muted-note">Доступно только пользователям с ролью <b>admin</b>.</div>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Время</th>
+                                <th>Инициатор</th>
+                                <th>Событие</th>
+                                <th>Код</th>
+                                <th>Детали</th>
+                            </tr>
+                        </thead>
+                        <tbody id="auditTableBody"></tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
